@@ -1,0 +1,43 @@
+<?mapper version="1.0" encoding="utf-8"?>
+<configuration>
+    <properties>
+        <!-- 文件输出格式 -->
+        <!--<property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} |-%-5level [%thread] %c [%L] -| %msg%n</property>-->
+        <!---->
+        <!--<property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss} |-%-5level %c [%L] -| %msg%n</property>-->
+        <property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss} %highlight{%-5level} [%thread] %c{1.}.%M()- %highlight{%msg%n}
+        </property>
+    </properties>
+
+    <appenders>
+        <Console name="Console" class="org.apache.log4j.ConsoleAppender" target="system_out">
+            <PatternLayout pattern="${PATTERN}" />
+        </Console>
+    </appenders>
+
+    <loggers>
+        <logger name="com.alex" level="debug" additivity="false"><AppenderRef ref="Console"/></logger>
+        <logger name="org.mybatis" level="debug" additivity="false"><AppenderRef ref="Console"/></logger>
+        <logger name="java.sql.Connection" level="debug" additivity="false"><AppenderRef ref="Console"/></logger>
+        <logger name="java.sql.Statement" level="info" additivity="false"><AppenderRef ref="Console"/></logger>
+        <logger name="io.shardingsphere" level="debug" additivity="false"><AppenderRef ref="Console"/></logger>
+        <root level="info">
+            <appenderref ref="Console" />
+        </root>
+    </loggers>
+
+    <!-- 在log4jdbc中定义了以下五个日志对象：
+
+     　　jdbc.sqlonly     : 记录系统执行过的sql语句
+
+     　　jdbc.sqltiming  : 记录sql执行的时间，可以分析耗时的sql语句
+
+     　　jdbc.audit        : 记录除了ResultSet外的所有JDBC调用情况。一般不需要。
+
+     　　jdbc.resultset   : 记录返回结果集信息
+
+     　　jdbc.connection: 记录数据库连接和释放信息，可记录当前的数据库连接数，便于诊断连接是否释放。-->
+
+
+
+</configuration>
